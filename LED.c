@@ -16,7 +16,7 @@
 #include <stm32l1xx.h>
 #include "LED.h"
 
-const unsigned long led_mask[] = {1UL << 8, 1UL << 9};
+const unsigned long led_mask[] = {1UL << 10, 1UL << 9};
 
 /*-----------------------------------------------------------------------------
  *      LED_Init:  Initialize LED Pins
@@ -29,12 +29,12 @@ void LED_Init (void) {
   RCC->AHBENR |=  (1UL <<  2);                  /* Enable GPIOC clock         */
 
   /* Configure LED (PC.8..9) pins as push-pull outputs, No pull-up, pull-down */
-  GPIOC->MODER   &= ~((3UL << 2*8) | (3UL << 2*9));
-  GPIOC->MODER   |=  ((1UL << 2*8) | (1UL << 2*9));
-  GPIOC->OTYPER  &= ~((1UL <<   8) | (1UL <<   9));
-  GPIOC->OSPEEDR &= ~((3UL << 2*8) | (3UL << 2*9));
-  GPIOC->OSPEEDR |=  ((1UL << 2*8) | (1UL << 2*9));
-  GPIOC->PUPDR   &= ~((3UL << 2*8) | (3UL << 2*9));
+  GPIOC->MODER   &= ~((3UL << 2*10) | (3UL << 2*9));
+  GPIOC->MODER   |=  ((1UL << 2*10) | (1UL << 2*9));
+  GPIOC->OTYPER  &= ~((1UL <<   10) | (1UL <<   9));
+  GPIOC->OSPEEDR &= ~((3UL << 2*10) | (3UL << 2*9));
+  GPIOC->OSPEEDR |=  ((1UL << 2*10) | (1UL << 2*9));
+  GPIOC->PUPDR   &= ~((3UL << 2*10) | (3UL << 2*9));
 }
 
 
