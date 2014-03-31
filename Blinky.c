@@ -21,6 +21,7 @@
 
 #include "main.h"
 #include "modem_test.h"
+#include "gps_test.h"
 
 volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
 /*----------------------------------------------------------------------------
@@ -106,11 +107,17 @@ int main (void) {
 	
 	init_modem_pins();
 	modem_uart_init();
+	
+	init_gps_pins();
+	init_gps_uart();
 
   while(1) {                                    /* Loop forever               */
       /* Calculate 'num': 0,1,...,LED_NUM-1,LED_NUM-1,...,1,0,0,...  */
       num++;
-		if (num > 2) {num=0;}
+		if (num > 2) {
+			num=0;
+			printf("gps rx cnt: %d\r\n", gp.receive_cnt);
+		}
 
 
       LED_On (num);
@@ -118,8 +125,7 @@ int main (void) {
       LED_Off(num);
       Delay(40);                                /* Delay 400ms                */
 			
-			printf("hi\r\n");
-			printf("modem rx cnt: %d\r\n", md.receive_cnt);
+			
 
   }
 

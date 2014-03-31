@@ -12,6 +12,7 @@
 ".\flash\stm32l1xx_usart.o"
 ".\flash\misc.o"
 ".\flash\modem_test.o"
+".\flash\gps_test.o"
 --strict --scatter ".\Flash\Blinky.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

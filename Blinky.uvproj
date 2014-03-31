@@ -490,6 +490,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>GPS</GroupName>
+          <Files>
+            <File>
+              <FileName>gps_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gps_test.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -973,6 +983,16 @@
               <FileName>modem_test.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\modem_test.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>GPS</GroupName>
+          <Files>
+            <File>
+              <FileName>gps_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gps_test.c</FilePath>
             </File>
           </Files>
         </Group>
