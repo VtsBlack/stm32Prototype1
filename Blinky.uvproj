@@ -423,6 +423,21 @@
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
             </File>
+            <File>
+              <FileName>Retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -432,6 +447,36 @@
               <FileName>Abstract.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\Abstract.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LIBS</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l1xx_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -594,12 +639,12 @@
             <UseTargetDll>1</UseTargetDll>
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4100</DriverSelection>
+            <DriverSelection>4103</DriverSelection>
           </Flash1>
-          <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\ULP2CM3.DLL</Flash2>
+          <bUseTDR>0</bUseTDR>
+          <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
@@ -786,9 +831,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>STM32F10X_MD USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>..\STM32L1xx_StdPeriph_Driver\inc;..\CMSIS\Device\ST\STM32L1xx\Include;..\Blinky</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -854,6 +899,21 @@
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
             </File>
+            <File>
+              <FileName>Retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -863,6 +923,36 @@
               <FileName>Abstract.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\Abstract.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LIBS</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l1xx_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l1xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32L1xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -12,10 +12,12 @@
  *
  * Copyright (c) 2013 Keil - An ARM Company. All rights reserved.
  *----------------------------------------------------------------------------*/
+#include <stdio.h>               /* prototype declarations for I/O functions  */
 
 #include <stm32l1xx.h>
 #include "LED.h"
-
+#include "Serial.h"
+#include "stm32l1xx_conf.h"
 
 volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
 /*----------------------------------------------------------------------------
@@ -87,35 +89,29 @@ void SystemCoreClockSetHSI(void) {
  *----------------------------------------------------------------------------*/
 int main (void) {
   int32_t num  = -1;
-  int32_t dir  =  1;
- uint32_t btns =  0;
 
   SystemCoreClockSetHSI();
   SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
 
   LED_Init();
-  BTN_Init();
+  //BTN_Init();
+	SER_Init ();                   /* initialize the serial interface           */
+	
 
   SysTick_Config(SystemCoreClock / 100);        /* SysTick 10 msec interrupts */
 
   while(1) {                                    /* Loop forever               */
-    btns = BTN_Get();                           /* Read button states         */
-
-    if (btns != (1UL << 0)) {
       /* Calculate 'num': 0,1,...,LED_NUM-1,LED_NUM-1,...,1,0,0,...  */
-      num += dir;
-      if (num == LED_NUM) { dir = -1; num =  LED_NUM-1; }
-      else if   (num < 0) { dir =  1; num =  0;         }
+      num++;
+		if (num > 2) {num=0;}
+
 
       LED_On (num);
       Delay(10);                                /* Delay 100ms                */
       LED_Off(num);
       Delay(40);                                /* Delay 400ms                */
-    }
-    else {
-      LED_Out (0x03);
-      Delay(1);                                 /* Delay 10ms                 */
-    }
+			
+			printf("kabad");
 
   }
 

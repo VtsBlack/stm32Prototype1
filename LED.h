@@ -17,7 +17,7 @@
 #define __LED_H
 
 /* LED Definitions */
-#define LED_NUM     2                        /* Number of user LEDs          */
+#define LED_NUM     3                        /* Number of user LEDs          */
 
 extern void LED_Init(void);
 extern void LED_On  (uint32_t num);
