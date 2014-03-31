@@ -19,6 +19,9 @@
 #include "Serial.h"
 #include "stm32l1xx_conf.h"
 
+#include "main.h"
+#include "modem_test.h"
+
 volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
 /*----------------------------------------------------------------------------
   SysTick_Handler
@@ -97,8 +100,12 @@ int main (void) {
   //BTN_Init();
 	SER_Init ();                   /* initialize the serial interface           */
 	
+	
 
   SysTick_Config(SystemCoreClock / 100);        /* SysTick 10 msec interrupts */
+	
+	init_modem_pins();
+	modem_uart_init();
 
   while(1) {                                    /* Loop forever               */
       /* Calculate 'num': 0,1,...,LED_NUM-1,LED_NUM-1,...,1,0,0,...  */
@@ -111,7 +118,8 @@ int main (void) {
       LED_Off(num);
       Delay(40);                                /* Delay 400ms                */
 			
-			printf("kabad");
+			printf("hi\r\n");
+			printf("modem rx cnt: %d\r\n", md.receive_cnt);
 
   }
 

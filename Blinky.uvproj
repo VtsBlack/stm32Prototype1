@@ -480,6 +480,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>Modem</GroupName>
+          <Files>
+            <File>
+              <FileName>modem_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modem_test.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -953,6 +963,16 @@
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32L1xx_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modem</GroupName>
+          <Files>
+            <File>
+              <FileName>modem_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modem_test.c</FilePath>
             </File>
           </Files>
         </Group>
