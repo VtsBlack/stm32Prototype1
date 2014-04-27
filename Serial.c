@@ -22,6 +22,9 @@
 volatile int ITM_RxBuffer = ITM_RXBUFFER_EMPTY;  /*  CMSIS Debug Input        */
 #endif
 
+#include "gps_test.h"
+
+struct GPS_TEST_TYPE sr;
 
 /*----------------------------------------------------------------------------
   Initialize UART pins, Baudrate
@@ -30,6 +33,7 @@ void SER_Init (void) {
   int i;
 	GPIO_InitTypeDef GPIO_InitStruct;
 	USART_InitTypeDef USART_InitStruct;
+	NVIC_InitTypeDef nvic;
 
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
@@ -65,7 +69,30 @@ void SER_Init (void) {
 	USART_Init(USART1, &USART_InitStruct);
   
 	USART_Cmd(USART1, ENABLE);
+	
+	
+	nvic.NVIC_IRQChannel = USART1_IRQn;
+	nvic.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&nvic);
+	
+	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 
+}
+
+void USART1_IRQHandler(void)
+{
+	char byte=0;
+	if (USART_GetITStatus(USART1, USART_IT_RXNE) == SET) {
+		// clear by read.
+		byte = USART1->DR;
+		// USART1->DR = byte;
+		sr.receive_cnt++;
+		
+		if (sr.rx_index >= sizeof(sr.rx_buf)) { sr.rx_index = 0;}
+		//---------------------------------------------------------
+		sr.rx_buf[sr.rx_index] = byte;
+		sr.rx_index++;
+	}
 }
 
 

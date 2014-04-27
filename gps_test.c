@@ -37,15 +37,17 @@ void init_gps_uart(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 	USART_InitTypeDef USART_InitStruct;
 	NVIC_InitTypeDef nvic;
+	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
 
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART2);
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource11, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_USART3);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_USART3);
 	
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11; // tx and rx
+	GPIO_InitStruct.GPIO_Pin = (GPIO_Pin_10 | GPIO_Pin_11); // tx and rx
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;

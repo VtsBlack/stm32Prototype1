@@ -87,12 +87,14 @@ void SystemCoreClockSetHSI(void) {
   while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);   /* Wait for HSI used as system clock */
 }
 
+extern struct GPS_TEST_TYPE sr;
 
 /*----------------------------------------------------------------------------
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
   int32_t num  = -1;
+	uint8_t modem_init_mode = 0;
 
   SystemCoreClockSetHSI();
   SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
@@ -105,18 +107,53 @@ int main (void) {
 
   SysTick_Config(SystemCoreClock / 100);        /* SysTick 10 msec interrupts */
 	
+	#if (TEST_MODEM_EN == 1)
 	init_modem_pins();
 	modem_uart_init();
+	#endif
 	
+	#if (TEST_GPS_EN == 1)
 	init_gps_pins();
 	init_gps_uart();
+	#endif
 
   while(1) {                                    /* Loop forever               */
       /* Calculate 'num': 0,1,...,LED_NUM-1,LED_NUM-1,...,1,0,0,...  */
       num++;
 		if (num > 2) {
 			num=0;
+			#if (TEST_GPS_EN == 1)
 			printf("gps rx cnt: %d\r\n", gp.receive_cnt);
+			#endif
+			
+			#if (TEST_MODEM_EN == 1)
+			if (modem_init_mode == 0) {
+				
+				send_to_modem("at\r");
+			}
+			else {
+				send_to_modem("csq\r");
+			}
+			printf("modem rx cnt: %d\r\n", md.receive_cnt);
+			if (sr.rx_index > 0) {
+				sr.rx_index = 0;
+				printf("echo: %s\r", sr.rx_buf);
+				
+				// uart 1 rx is the modem input
+				if (strncmp(sr.rx_buf, "OK", 2) == 0) {
+					modem_init_mode = 1;
+				}
+			}
+			if (md.rx_index > 0) {
+				
+				
+				printf("md<%d>: %s begin:%x,%x,%x\r", md.rx_index, md.rx_buf, md.rx_buf[0], md.rx_buf[1], md.rx_buf[2]);
+				md.rx_index = 0;
+				
+				
+			}
+			#endif
+			
 		}
 
 

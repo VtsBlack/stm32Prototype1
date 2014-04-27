@@ -10,3 +10,4 @@ extern struct MODEM_TEST_TYPE md;
 void init_modem_pins(void);
 void modem_uart_init(void);
 
+void send_to_modem(char *msg);
